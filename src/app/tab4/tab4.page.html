@@ -1,0 +1,21 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Search</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-searchbar placeholder="recherche par numéro, nom ou prénom" (ionChange)="filter($event.target.value)"></ion-searchbar>
+
+  <ion-button *ngIf="filterInput" (click)="getContacts()" expand="block" size="medium">Search</ion-button>
+  <ion-list>
+
+    <ion-item *ngFor="let contact of contacts">
+      <ion-icon slot="start" name="call-outline"></ion-icon>
+      <ion-label>
+        <h2>{{contact.firstName}} {{contact.lastName}} </h2>
+        <h3>{{contact.contact}}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
