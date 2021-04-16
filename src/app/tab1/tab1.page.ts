@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CallLog } from '@ionic-native/call-log/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -7,16 +8,21 @@ import { CallLog } from '@ionic-native/call-log/ngx';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-
-  constructor(private callLog: CallLog) {}
+  myContacts = [];
+  constructor(private callLog: CallLog, private callNumber: CallNumber) {}
 
   ngOnInit() {
     this.callLog.getCallLog([]).then(data => {
-      console.log(data);
-      console.log(data.Number);
+      this.myContacts = data;
     }).catch(error => {
       console.log(error);
     });
+  }
+
+  callNow(num: string) {
+    this.callNumber.callNumber(num, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
   }
 
 }

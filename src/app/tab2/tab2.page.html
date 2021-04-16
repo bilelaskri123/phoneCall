@@ -7,16 +7,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-searchbar placeholder="recherche par numéro, nom ou prénom" (ionChange)="getContacts($event.target.value)"></ion-searchbar>
-
   <ion-list>
 
-    <ion-item *ngFor="let contact of contacts">
+    <ion-item *ngFor="let contact of contactList">
       <ion-icon slot="start" name="call-outline"></ion-icon>
       <ion-label>
-        <h2>{{contact.firstName}} {{contact.lastName}} </h2>
-        <h3>{{contact.contact}}</h3>
+        <h2>{{contact.name.givenName}} {{contact.displayName}} </h2>
+        <h3>{{contact.phoneNumbers[0].value}}</h3>
       </ion-label>
+      <ion-buttons>
+        <ion-button (click)="callNow(contact.phoneNumbers[0].value)" slot="end"><ion-icon color="primary" name="call-outline"></ion-icon></ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 

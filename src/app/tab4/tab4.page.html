@@ -16,6 +16,9 @@
         <h2>{{contact.firstName}} {{contact.lastName}} </h2>
         <h3>{{contact.contact}}</h3>
       </ion-label>
+      <ion-buttons>
+        <ion-button (click)="callNow(contact.contact)" slot="end"><ion-icon color="primary" name="call-outline"></ion-icon></ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>
